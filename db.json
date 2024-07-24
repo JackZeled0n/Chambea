@@ -1,0 +1,39 @@
+{
+    "posts": [
+      {
+        "id": 1,
+        "title": "First Blog Post",
+        "content": "This is the content of the first post",
+        "author": "Author 1",
+        "date": "2024-07-24"
+      },
+      {
+        "id": 2,
+        "title": "Second Blog Post",
+        "content": "This is the content of the second post",
+        "author": "Author 2",
+        "date": "2024-07-25"
+      }
+    ],
+    "favorites": [
+      {
+        "userEmail": "user1@example.com",
+        "postId": 1
+      },
+      {
+        "userEmail": "user2@example.com",
+        "postId": 2
+      }
+    ],
+    "users": [
+      {
+        "email": "user1@example.com",
+        "name": "User One"
+      },
+      {
+        "email": "user2@example.com",
+        "name": "User Two"
+      }
+    ]
+  }
+  
