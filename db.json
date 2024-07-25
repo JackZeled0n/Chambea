@@ -2,17 +2,35 @@
     "posts": [
       {
         "id": 1,
-        "title": "First Blog Post",
-        "content": "This is the content of the first post",
+        "title": "Keeping the dream alive by traveling the world.",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id obcaecati consequatur rerum, modi ipsum odit atque mollitia, perferendis, necessitatibus dolore quod fugiat sunt consequuntur. Illo ducimus natus ad cum numquam?",
         "author": "Author 1",
-        "date": "2024-07-24"
+        "date": "2024-07-24",
+        "imageUrl": "https://via.placeholder.com/300"
       },
       {
         "id": 2,
         "title": "Second Blog Post",
         "content": "This is the content of the second post",
         "author": "Author 2",
-        "date": "2024-07-25"
+        "date": "2024-07-25",
+        "imageUrl": "https://via.placeholder.com/500"
+      },
+      {
+        "id": 3,
+        "title": "Third Blog Post",
+        "content": "This is the content of the Third post",
+        "author": "Author 3",
+        "date": "2024-07-25",
+        "imageUrl": "https://via.placeholder.com/500"
+      },
+      {
+        "id": 4,
+        "title": "Fourth Blog Post",
+        "content": "This is the content of the Fourth post",
+        "author": "Author 4",
+        "date": "2024-07-25",
+        "imageUrl": "https://via.placeholder.com/500"
       }
     ],
     "favorites": [
@@ -28,11 +46,13 @@
     "users": [
       {
         "email": "user1@example.com",
-        "name": "User One"
+        "name": "User One",
+        "avatarUrl": "src='https://avataaars.io/?avatarStyle=Circle&topType=LongHairStraight&accessoriesType=Blank&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerShirt&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Light'"
       },
       {
         "email": "user2@example.com",
-        "name": "User Two"
+        "name": "User Two",
+        "avatarUrl": "src='https://avataaars.io/?avatarStyle=Circle&topType=LongHairStraight&accessoriesType=Blank&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerShirt&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Light'"
       }
     ]
   }
