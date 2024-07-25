@@ -7,13 +7,13 @@ import { SearchInputComponent } from '../../../shared/components/search-input/se
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-posts',
+  selector: 'home',
   standalone: true,
   imports: [CommonModule, HttpClientModule, CardComponent, SearchInputComponent, FormsModule],
-  templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.css']
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
-export class PostsComponent implements OnInit {
+export class HomeComponent implements OnInit {
   posts: any[] = [];
   filteredPosts: any[] = [];
   searchQuery: string = '';
