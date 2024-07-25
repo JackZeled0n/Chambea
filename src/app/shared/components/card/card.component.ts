@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card',
@@ -10,10 +11,13 @@ import { CommonModule } from '@angular/common';
 })
 export class CardComponent {
   @Input() title: string = '';
-  @Input() content: string = '';
+  @Input() summary: string = '';
   @Input() imageUrl: string = '';
-  @Input() userName: string = '';
+  @Input() author: string = '';
   @Input() date: string = '';
+  @Input() id: string = '';
+
+  constructor(private router: Router) {}
 
   isFavorite: boolean = false;
 
@@ -23,5 +27,9 @@ export class CardComponent {
 
   truncateContent(content: string, limit: number): string {
     return content.length > limit ? content.substring(0, limit) + '...' : content;
+  }
+
+  onSeePostClick() {
+    this.router.navigate(['/post-details', this.id]);
   }
 }
