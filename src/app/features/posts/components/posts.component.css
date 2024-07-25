@@ -1,0 +1,51 @@
+.input-group-text {
+    background-color: #fff;
+    border: 0;
+}
+  
+.form-control {
+    border-radius: 0;
+    border: 0;
+}
+
+.input-group {
+    border-radius: 0;
+}
+
+.total-posts {
+    white-space: nowrap;
+}
+
+.result-text {
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 14.06px;
+    letter-spacing: 0.08em;
+    text-align: left;
+    color: rgba(134, 154, 184, 1);
+}
+
+.vh-70 {
+    height: 70vh !important;
+}
+
+.header-empty {
+    font-size: 52px;
+    font-weight: 900;
+    line-height: 60.94px;
+    letter-spacing: -0.01em;
+    text-align: center;
+}
+
+.text-empty {
+    color: rgba(110, 132, 163, 1);
+    font-size: 17px;
+    font-weight: 900;
+    line-height: 25.9px;
+    text-align: center;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #ced4da;
+}
