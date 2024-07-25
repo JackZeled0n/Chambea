@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { ApiService } from '../../services/api.service';
+import { ApiService } from '../../../core/services/api.service';
+import { CardComponent } from '../../../shared/components/card/card.component';
 
 @Component({
   selector: 'app-posts',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, HttpClientModule, CardComponent],
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.css']
 })
