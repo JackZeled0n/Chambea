@@ -27,10 +27,11 @@
   <div class="row">
     <div *ngFor="let post of filteredPosts" class="col-4 mb-4">
       <app-card
+        [id]="post.id"
         [title]="post.title"
-        [content]="post.content"
+        [summary]="post.summary"
         [imageUrl]="post.imageUrl"
-        [userName]="post.author"
+        [author]="post.author"
         [date]="post.date">
       </app-card>
     </div>
