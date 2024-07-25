@@ -1,0 +1,27 @@
+.input-group-text {
+    background-color: #fff;
+    border: 0;
+}
+
+.input-group {
+    border-radius: 0;
+}
+
+.form-control {
+    border-radius: 0;
+    border: 0;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #ced4da;
+}
+
+.result-text {
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 14.06px;
+    letter-spacing: 0.08em;
+    text-align: left;
+    color: rgba(134, 154, 184, 1);
+}
