@@ -1,73 +1,89 @@
 .post-header {
-    margin-bottom: 40px;
-}
-  
-.post-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 20px;
+	margin-bottom: 40px;
 }
 
-.post-subtitle {
-  font-size: 1.25rem;
-  color: #666;
-  margin-bottom: 30px;
+.post-title {
+	font-size: 43px;
+	font-weight: 900;
+	line-height: 52.91px;
+	letter-spacing: -0.02em;
+	text-align: center;
+}
+
+.post-summary {
+	font-size: 1.25rem;
+	color: rgba(80, 102, 144, 1);
+	font-size: 21px;
+	font-weight: 900;
+	line-height: 31.99px;
+	text-align: center;
 }
 
 .post-meta {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 30px;
+	display: flex;
+	justify-content: start;
+	align-items: start;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	text-align: left;
 }
 
 .avatar {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-right: 15px;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	margin-right: 15px;
 }
 
 .author-info {
-  display: flex;
-  flex-direction: column;
-  margin-right: 20px;
+	display: flex;
+	flex-direction: column;
+	margin-right: 20px;
+	margin-top: 10px;
 }
 
 .author-name {
-  font-weight: 700;
+	font-size: 12px;
+	font-weight: 800;
+	text-align: left;
 }
 
 .post-date {
-  color: #999;
+	color: rgba(80, 102, 144, 1);
+	font-size: 12px;
+	font-weight: 800;
+	text-align: left;
 }
 
 .post-share {
-  display: flex;
-  align-items: center;
-  font-size: 1.25rem;
+	display: flex;
+	align-items: center;
+	font-size: 1.25rem;
 }
 
 .post-share span {
-  margin-right: 10px;
+	margin-right: 10px;
 }
 
 .post-share i {
-  margin: 0 5px;
+	margin: 0 5px;
 }
 
 .post-image {
-  margin-bottom: 30px;
+	margin-bottom: 30px;
 }
 
 .image-caption {
-  font-size: 0.875rem;
-  color: #999;
-  margin-top: 10px;
+	color: rgba(134, 154, 184, 1);
+	margin-top: 10px;
+	font-size: 15px;
+	line-height: 22.85px;
 }
 
 .post-content p {
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 20px;
+	margin-bottom: 20px;
+	font-size: 17px;
+	font-weight: 700;
+	line-height: 25.9px;
+	text-align: left;
 }
