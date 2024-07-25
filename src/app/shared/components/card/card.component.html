@@ -1,9 +1,29 @@
-<div class="card" style="width: 18rem;">
-    <img [src]="imageUrl" [alt]="title">
-    <div class="card-body">
-      <h5 class="card-title">{{ title }}</h5>
-      <p class="card-text">{{ text }}</p>
-      <a [href]="buttonLink" class="btn btn-primary">{{ buttonText }}</a>
+<div class="d-flex justify-content-center">
+    <div class="card shadow-sm w-75">
+        <div class="position-relative">
+            <img [src]="imageUrl" [alt]="title" class="card-img-top">
+            <button 
+              class="position-absolute top-0 end-0 m-2" 
+              (click)="toggleFavorite()" 
+              aria-label="Favorite">
+                <i [ngClass]="isFavorite ? 'bi bi-star-fill text-warning' : 'bi bi-star text-muted'"></i>
+            </button>
+        </div>
+        <div class="p-2">      
+            <div class="card-body">
+                <h5 class="card-title mt-2">{{ title }}</h5>
+                <p class="card-text">{{ truncateContent(content, 55)}}</p>
+            </div>
+            <div class="card-footer bg-white">
+                <hr>
+                <div class="d-flex justify-content-between align-items-center ">
+                    <div class="d-flex align-items-center">
+                        <img src='https://avataaars.io/?avatarStyle=Circle&topType=LongHairStraight&accessoriesType=Blank&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerShirt&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Light' class="rounded-circle" alt="Avatar" width="32" height="32">
+                        <span class="ms-2 username">{{userName}}</span>
+                    </div>
+                    <span class="date">{{date}}</span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-  
