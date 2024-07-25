@@ -7,7 +7,7 @@ import { SearchInputComponent } from '../../../shared/components/search-input/se
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'home',
+  selector: 'app-home',
   standalone: true,
   imports: [CommonModule, HttpClientModule, CardComponent, SearchInputComponent, FormsModule],
   templateUrl: './home.component.html',
