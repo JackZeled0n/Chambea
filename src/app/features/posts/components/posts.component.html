@@ -1,10 +1,43 @@
 <div class="container mt-5">
-  <h1 class="text-center mb-4">Blog Posts</h1>
-  <div *ngIf="posts.length === 0" class="alert alert-info text-center">
-    <p>No posts available.</p>
+  <div class="row d-flex justify-content-center">
+    <div class="col-11 mb-4">
+      <div class="input-group input-group-lg shadow">
+        <span class="input-group-text">
+          <i class="bi bi-search"></i>
+        </span>
+        <input 
+          type="text" 
+          class="form-control" 
+          placeholder="Search" 
+          [(ngModel)]="searchQuery" 
+          (input)="filterPosts()">
+        <span class="input-group-text result-text">
+          {{ filteredPosts.length }} results
+        </span>
+      </div>
+    </div>
   </div>
-  <div class="row">
-    <div *ngFor="let post of posts" class="col-4 mb-4">
+  
+  <div *ngIf="filteredPosts.length === 0" class="text-center">
+    <div class="row d-flex justify-content-center vh-70">
+      <div class="col-5 d-flex flex-column justify-content-center align-items-center">
+        <p class="header-empty">Uh oh.</p>
+        <p class="d-flex justify-content-center align-items-center px-5 text-empty">We ran into an issue, but don’t worry, we’ll take care of it for sure.</p>
+        <button 
+          type="button" 
+          class="btn btn-primary" 
+          (click)="clearSearch()">
+          Back to safety
+        </button>
+      </div>
+      <div class="col-6 d-flex flex-column justify-content-center align-items-center">
+        <img src="../../../../assets/svg/empty-post.svg" class="img-fluid" alt="Empty-post">
+      </div>
+    </div>
+  </div>
+  
+  <div class="row mt-4">
+    <div *ngFor="let post of filteredPosts" class="col-4 mb-4">
       <app-card
         [title]="post.title"
         [content]="post.content"
