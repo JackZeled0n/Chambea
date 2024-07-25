@@ -1,0 +1,35 @@
+<div *ngIf="post; else loading">
+    <div class="container my-5 py-5 px-3 bg-white shadow-sm">
+        <div class="row d-flex justify-content-center">
+            <div class="col-8">
+                <div class="post-header text-center">
+                    <h1 class="post-title">{{ post.title }}</h1>
+                    <p class="post-subtitle">
+                        {{ post.summary }}
+                    </p>
+                    <div class="post-meta">
+                        <img src="https://avataaars.io/?avatarStyle=Circle&topType=LongHairStraight&accessoriesType=Blank&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerShirt&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Light" alt="Author avatar" class="avatar">
+                        <div class="author-info">
+                            <span class="author-name">{{ post.author }}</span>
+                            <span class="post-date">Published on {{ post.date }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="post-image text-center">
+                    <img [src]="post.imageUrl" [alt]="post.title" width="680" height="395">
+                    <p class="image-caption">This is a caption on this photo for reference</p>
+                </div>
+                <div class="post-content">
+                    <p>
+                        {{ post.content }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #loading>  
+    <div class="text-center">
+        <p>Loading post details...</p>
+    </div>
+</ng-template>

@@ -1,0 +1,73 @@
+.post-header {
+    margin-bottom: 40px;
+}
+  
+.post-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.post-subtitle {
+  font-size: 1.25rem;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.post-meta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.author-info {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
+.author-name {
+  font-weight: 700;
+}
+
+.post-date {
+  color: #999;
+}
+
+.post-share {
+  display: flex;
+  align-items: center;
+  font-size: 1.25rem;
+}
+
+.post-share span {
+  margin-right: 10px;
+}
+
+.post-share i {
+  margin: 0 5px;
+}
+
+.post-image {
+  margin-bottom: 30px;
+}
+
+.image-caption {
+  font-size: 0.875rem;
+  color: #999;
+  margin-top: 10px;
+}
+
+.post-content p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
