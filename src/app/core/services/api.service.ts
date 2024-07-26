@@ -37,4 +37,8 @@ export class ApiService {
   editPost(id: number, post: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/posts/${id}`, post);
   }
+
+  getUserByEmail(email: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/users?email=${email}`);
+  }
 }
