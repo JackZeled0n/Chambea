@@ -3,7 +3,6 @@
     <div class="position-relative start">
       <img [src]="imageUrl" [alt]="title" class="card-img-top">
       <button 
-        *ngIf="isAuthenticated"
         class="position-absolute top-0 end-0 m-2" 
         (click)="toggleFavorite()" 
         aria-label="Favorite">

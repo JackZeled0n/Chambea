@@ -37,18 +37,7 @@
       "imageUrl": "https://via.placeholder.com/500"
     }
   ],
-  "favorites": [
-    {
-      "id": "2",
-      "userEmail": "user2@example.com",
-      "postId": 2
-    },
-    {
-      "id": "b8b3",
-      "userEmail": "user1@example.com",
-      "postId": "1"
-    }
-  ],
+  "favorites": [],
   "users": [
     {
       "id": "1",

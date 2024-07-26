@@ -19,9 +19,10 @@ export class CardComponent implements OnInit {
   @Input() author: string = ''; 
   @Input() date: string = '';
   @Input() id: string = '';
-  @Input() favoriteId: string = '';
+  @Input() favoriteId: string | null = null;
 
   @Output() favoriteRemoved: EventEmitter<string> = new EventEmitter<string>();
+  @Output() showLoginModal: EventEmitter<void> = new EventEmitter<void>();
 
   userName: string = ''; 
   avatar: string = '';
@@ -36,13 +37,19 @@ export class CardComponent implements OnInit {
   ) {}
 
   toggleFavorite(): void {
+    this.isAuthenticated = this.authService.isAuthenticated();
+    if (!this.isAuthenticated) {
+      this.showLoginModal.emit();
+      return;
+    }
+
     const userEmail = this.authService.getUserEmail();
     if (this.isFavorite) {
       if (this.favoriteId) {
         this.apiService.removeFavorite(this.favoriteId).subscribe({
           next: () => {
             this.isFavorite = false;
-            this.favoriteRemoved.emit(this.favoriteId.toString());
+            this.favoriteRemoved.emit(this.favoriteId?.toString());
           },
           error: (error) => {
             console.error('Error removing favorite:', error);
@@ -52,12 +59,7 @@ export class CardComponent implements OnInit {
     } else {
       const favorite = {
         userEmail: userEmail,
-        postId: this.id,
-        title: this.title,
-        summary: this.summary,
-        imageUrl: this.imageUrl,
-        author: this.author,
-        date: this.date
+        postId: this.id
       };
       this.apiService.addFavorite(favorite).subscribe({
         next: (response) => {
@@ -81,7 +83,6 @@ export class CardComponent implements OnInit {
 
   ngOnInit(): void {
     this.isAuthenticated = this.authService.isAuthenticated();
-
     this.userService.loadUserByEmail(this.author).subscribe({
       next: (user) => {
         this.userName = user.userName;
@@ -94,18 +95,24 @@ export class CardComponent implements OnInit {
       }
     });
 
-    const userEmail = this.authService.getUserEmail();
-    this.apiService.getFavorites(userEmail).subscribe({
-      next: (favorites) => {
-        const favorite = favorites.find((fav: any) => fav.postId === this.id);
-        if (favorite) {
-          this.isFavorite = true;
-          this.favoriteId = favorite.id;
+    if (this.isAuthenticated) {
+      const userEmail = this.authService.getUserEmail();
+      this.apiService.getFavorites(userEmail).subscribe({
+        next: (favorites) => {
+          const favorite = favorites.find((fav: any) => fav.postId === this.id);
+          if (favorite) {
+            this.isFavorite = true;
+            this.favoriteId = favorite.id;
+          }
+        },
+        error: (error) => {
+          console.error('Error loading favorites:', error);
         }
-      },
-      error: (error) => {
-        console.error('Error loading favorites:', error);
-      }
+      });
+    }
+
+    this.authService.user$.subscribe(user => {
+      this.isAuthenticated = !!user;
     });
   }
 }
