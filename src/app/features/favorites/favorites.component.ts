@@ -6,6 +6,8 @@ import { map, switchMap } from 'rxjs/operators';
 import { ApiService } from '../../core/services/api.service';
 import { AuthService } from '../../core/services/auth.service';
 import { CardComponent } from '../../shared/components/card/card.component';
+import { SearchInputComponent } from '../../shared/components/search-input/search-input.component';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 interface Favorite {
@@ -17,12 +19,14 @@ interface Favorite {
 @Component({
   selector: 'app-favorites',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, CardComponent],
+  imports: [CommonModule, HttpClientModule, CardComponent, SearchInputComponent, FormsModule],
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.css']
 })
 export class FavoritesComponent implements OnInit {
   favorites: any[] = [];
+  filteredPosts: any[] = [];
+  searchQuery: string = '';
   userEmail: string = '';
 
   constructor(
@@ -33,11 +37,11 @@ export class FavoritesComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.authService.isAuthenticated()) {
-      this.router.navigate(['/']); // Redirige al componente home si no está autenticado
+      this.router.navigate(['/']);
       return;
     }
 
-    this.userEmail = this.authService.getUserEmail(); // Obtén el email del usuario autenticado
+    this.userEmail = this.authService.getUserEmail();
     this.loadFavorites();
   }
 
@@ -54,6 +58,7 @@ export class FavoritesComponent implements OnInit {
     ).subscribe({
       next: (posts: any[]) => {
         this.favorites = posts;
+        this.filteredPosts = posts;
       },
       error: (error) => {
         console.error('Error loading favorites:', error);
@@ -61,7 +66,20 @@ export class FavoritesComponent implements OnInit {
     });
   }
 
+  filterPosts(): void {
+    const query = this.searchQuery.toLowerCase();
+    this.filteredPosts = this.favorites.filter(post => 
+      post.title.toLowerCase().includes(query)
+    );
+  }
+
+  clearSearch(): void {
+    this.searchQuery = '';
+    this.filterPosts();
+  }
+
   handleFavoriteRemoved(favoriteId: string): void {
     this.favorites = this.favorites.filter(fav => fav.favoriteId !== favoriteId);
+    this.filterPosts();
   }
 }
