@@ -9,7 +9,7 @@ interface Post {
   summary: string;
   content: string;
   imageUrl: string;
-  author: string;
+  authorEmail: string;
   date: string;
 }
 
@@ -23,6 +23,8 @@ interface Post {
 export class PostDetailsComponent implements OnInit {
   postId: string | null = null;
   post: Post | undefined; 
+  userName: string = ''; 
+  avatar: string = '';
 
   constructor(private route: ActivatedRoute, private apiService: ApiService) { }
 
@@ -39,9 +41,28 @@ export class PostDetailsComponent implements OnInit {
     this.apiService.getPost(id).subscribe({
       next: (post) => {
         this.post = post;
+        this.loadUserByEmail(this.post?.authorEmail);
       },
       error: (error) => {
         console.error('Error loading post details:', error);
+      }
+    });
+  }
+
+  loadUserByEmail(email: any) {
+    this.apiService.getUserByEmail(email).subscribe({
+      next: (users) => {
+        if (users && users.length > 0) {
+          this.userName = users[0].name;
+          this.avatar = users[0].avatarUrl;
+        } else {
+          this.userName = 'Unknown Author';
+          this.avatar = './assets/img/empty-user.png'
+        }
+      },
+      error: (error) => {
+        console.error('Error loading user name:', error);
+        this.userName = 'Unknown Author';
       }
     });
   }
