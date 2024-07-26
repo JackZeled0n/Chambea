@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { forkJoin, Observable } from 'rxjs';
@@ -6,9 +6,10 @@ import { map, switchMap } from 'rxjs/operators';
 import { ApiService } from '../../core/services/api.service';
 import { AuthService } from '../../core/services/auth.service';
 import { CardComponent } from '../../shared/components/card/card.component';
-import { SearchInputComponent } from '../../shared/components/search-input/search-input.component';
-import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { SearchInputComponent } from '../../shared/components/search-input/search-input.component';
+import { AuthModalComponent } from '../../shared/components/auth-modal/auth-modal.component';
 
 interface Favorite {
   id: string;
@@ -19,15 +20,17 @@ interface Favorite {
 @Component({
   selector: 'app-favorites',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, CardComponent, SearchInputComponent, FormsModule],
+  imports: [CommonModule, HttpClientModule, CardComponent, FormsModule, SearchInputComponent, AuthModalComponent],
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.css']
 })
 export class FavoritesComponent implements OnInit {
+  @ViewChild('authModal') authModal: AuthModalComponent | undefined;
+
   favorites: any[] = [];
-  filteredPosts: any[] = [];
-  searchQuery: string = '';
   userEmail: string = '';
+  searchQuery: string = '';
+  filteredFavorites: any[] = [];
 
   constructor(
     private apiService: ApiService,
@@ -37,11 +40,11 @@ export class FavoritesComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.authService.isAuthenticated()) {
-      this.router.navigate(['/']);
+      this.router.navigate(['/']); // Redirige al componente home si no está autenticado
       return;
     }
 
-    this.userEmail = this.authService.getUserEmail();
+    this.userEmail = this.authService.getUserEmail(); // Obtén el email del usuario autenticado
     this.loadFavorites();
   }
 
@@ -58,7 +61,7 @@ export class FavoritesComponent implements OnInit {
     ).subscribe({
       next: (posts: any[]) => {
         this.favorites = posts;
-        this.filteredPosts = posts;
+        this.filteredFavorites = posts;
       },
       error: (error) => {
         console.error('Error loading favorites:', error);
@@ -66,10 +69,15 @@ export class FavoritesComponent implements OnInit {
     });
   }
 
+  handleFavoriteRemoved(favoriteId: string): void {
+    this.favorites = this.favorites.filter(fav => fav.favoriteId !== favoriteId);
+    this.filteredFavorites = this.filteredFavorites.filter(fav => fav.favoriteId !== favoriteId);
+  }
+
   filterPosts(): void {
     const query = this.searchQuery.toLowerCase();
-    this.filteredPosts = this.favorites.filter(post => 
-      post.title.toLowerCase().includes(query)
+    this.filteredFavorites = this.favorites.filter(post =>
+      post.title.toLowerCase().includes(query) || post.author.toLowerCase().includes(query)
     );
   }
 
@@ -78,8 +86,9 @@ export class FavoritesComponent implements OnInit {
     this.filterPosts();
   }
 
-  handleFavoriteRemoved(favoriteId: string): void {
-    this.favorites = this.favorites.filter(fav => fav.favoriteId !== favoriteId);
-    this.filterPosts();
+  openLoginModal(): void {
+    if (this.authModal) {
+      this.authModal.openModal();
+    }
   }
 }
