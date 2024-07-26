@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +25,26 @@ export class UserService {
             avatar: './assets/img/empty-user.png'
           };
         }
+      })
+    );
+  }
+
+  registerUser(user: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/users`, user);
+  }
+
+  loginUser(email: string, password: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/users?email=${email}&password=${password}`).pipe(
+      map((users: any) => {
+        if (users && users.length > 0) {
+          return users[0];
+        } else {
+          throw new Error('Invalid email or password');
+        }
+      }),
+      catchError(error => {
+        console.error(error);
+        return of(null);
       })
     );
   }

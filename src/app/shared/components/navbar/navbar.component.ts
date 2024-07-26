@@ -1,22 +1,30 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { AuthModalComponent } from '../auth-modal/auth-modal.component';
+import { AuthService } from '../../../core/services/auth.service';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
-  standalone: true,
-  imports: [AuthModalComponent],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrls: ['./navbar.component.css'],
+  standalone: true,
+  imports: [CommonModule, RouterModule, AuthModalComponent]
 })
-export class NavbarComponent implements AfterViewInit  {
-  @ViewChild(AuthModalComponent) authModal!: AuthModalComponent;
+export class NavbarComponent {
+  @ViewChild('authModal') authModal!: AuthModalComponent;
 
-  ngAfterViewInit() {
-    console.log(this.authModal);
-  }
+  constructor(public authService: AuthService) {}
 
-  openLoginModal() {
+  openLoginModal(): void {
     this.authModal.openModal();
   }
-}
 
+  logout(): void {
+    this.authService.logout();
+  }
+
+  get currentUser() {
+    return this.authService.getCurrentUser();
+  }
+}
