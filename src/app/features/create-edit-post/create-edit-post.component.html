@@ -1,1 +1,42 @@
-<p>create-edit-post works!</p>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">{{ isEditMode ? 'Edit Post' : 'Create Post' }}</h1>
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+      <div *ngIf="successMessage" class="alert alert-success text-center">
+        {{ successMessage }}
+      </div>
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" id="title" class="form-control" formControlName="title">
+        <div *ngIf="postForm.get('title')?.invalid && postForm.get('title')?.touched" class="text-danger">
+          Title is required.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="summary" class="form-label">Summary</label>
+        <input type="text" id="summary" class="form-control" formControlName="summary">
+        <div *ngIf="postForm.get('summary')?.invalid && postForm.get('summary')?.touched" class="text-danger">
+          Summary is required.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="content" class="form-label">Content</label>
+        <textarea id="content" class="form-control" formControlName="content" rows="5"></textarea>
+        <div *ngIf="postForm.get('content')?.invalid && postForm.get('content')?.touched" class="text-danger">
+          Content is required.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="authorEmail" class="form-label">Author Email</label>
+        <input type="text" id="authorEmail" class="form-control" formControlName="authorEmail" [disabled]="true">
+      </div>
+      <div class="mb-3">
+        <label for="imageUrl" class="form-label">Image URL</label>
+        <input type="text" id="imageUrl" class="form-control" formControlName="imageUrl">
+        <div *ngIf="postForm.get('imageUrl')?.invalid && postForm.get('imageUrl')?.touched" class="text-danger">
+          Image URL is required.
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary w-100" [disabled]="postForm.invalid">{{ isEditMode ? 'Update Post' : 'Create Post' }}</button>
+    </form>
+</div>
+  

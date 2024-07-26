@@ -35,14 +35,36 @@
       "authorEmail": "user2@example.com",
       "date": "2024-07-25",
       "imageUrl": "https://via.placeholder.com/500"
+    },
+    {
+      "id": "1fb6",
+      "title": "Jake is testing",
+      "summary": "testing ",
+      "content": "Lorepm ipsum content mi hermano \n\nVos sabes como es esto probando",
+      "imageUrl": "https://via.placeholder.com/600",
+      "authorEmail": "test@123.com",
+      "date": "2024-07-26"
+    },
+    {
+      "id": "7",
+      "title": "Pouya",
+      "summary": "Listening to pouya man",
+      "content": "Loreem ipusim \n\n\nasdasdasdasdasdas",
+      "imageUrl": "https://via.placeholder.com/700",
+      "authorEmail": "test@123.com",
+      "date": "2024-07-26"
+    },
+    {
+      "id": "fe4a",
+      "title": "Chelsea",
+      "summary": "From",
+      "content": "you know",
+      "imageUrl": "https://via.placeholder.com/900",
+      "authorEmail": "test@123.com",
+      "date": "2024-07-26"
     }
   ],
   "favorites": [
-    {
-      "id": "c252",
-      "userEmail": "test@123.com",
-      "postId": "4"
-    },
     {
       "id": "098f",
       "userEmail": "test@123.com",

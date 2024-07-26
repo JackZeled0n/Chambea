@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { UserService } from './user.service';
 import { map } from 'rxjs/operators';
 
@@ -21,12 +21,10 @@ export class AuthService {
     );
   }
 
-  login(email: string, password: string) {
+  login(email: string, password: string): Observable<any> {
     return this.userService.loginUser(email, password).pipe(
-      map((user) => {
-        if (user) {
-          this.userSubject.next(user);
-        }
+      map(user => {
+        this.userSubject.next(user);
         return user;
       })
     );
