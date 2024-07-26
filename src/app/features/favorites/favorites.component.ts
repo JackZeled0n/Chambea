@@ -40,11 +40,11 @@ export class FavoritesComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.authService.isAuthenticated()) {
-      this.router.navigate(['/']); // Redirige al componente home si no está autenticado
+      this.router.navigate(['/']);
       return;
     }
 
-    this.userEmail = this.authService.getUserEmail(); // Obtén el email del usuario autenticado
+    this.userEmail = this.authService.getUserEmail();
     this.loadFavorites();
   }
 
@@ -77,7 +77,7 @@ export class FavoritesComponent implements OnInit {
   filterPosts(): void {
     const query = this.searchQuery.toLowerCase();
     this.filteredFavorites = this.favorites.filter(post =>
-      post.title.toLowerCase().includes(query) || post.author.toLowerCase().includes(query)
+      post.title.toLowerCase().includes(query)
     );
   }
 
