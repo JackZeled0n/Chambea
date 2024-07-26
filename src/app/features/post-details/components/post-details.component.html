@@ -1,33 +1,58 @@
 <div class="container my-5 py-5 px-3 bg-white shadow-sm">
-    <div class="row d-flex justify-content-center" *ngIf="post; else loading">
-       <div class="col-8">
-          <div class="post-header text-center">
-             <h1 class="post-title">{{ post.title }}</h1>
-             <p class="post-summary mt-3 mx-3">
-                {{ post.summary }}
-             </p>
-             <div class="post-meta">
-                <img [src]="avatar" alt="Author avatar" class="avatar">
-                <div class="author-info">
-                   <span class="author-name">{{ userName }}</span>
-                   <span class="post-date">Published on {{ post.date }}</span>
-                </div>
-             </div>
+  <div class="row d-flex justify-content-center" *ngIf="post; else loading">
+    <div class="col-11 col-md-10 col-lg-8">
+      <div class="post-header text-center">
+        <h1 class="post-title">{{ post.title }}</h1>
+        <p class="post-summary mt-3 mx-3">{{ post.summary }}</p>
+        <div class="post-meta d-flex justify-content-center align-items-center flex-wrap">
+          <img [src]="avatar" alt="Author avatar" class="avatar me-2">
+          <div class="author-info">
+            <span class="author-name">{{ userName }}</span>
+            <span class="post-date ms-2">Published on {{ post.date }}</span>
           </div>
-          <div class="post-image text-center">
-             <img [src]="post.imageUrl" [alt]="post.title" class="img-fluid">
-             <p class="image-caption">This is a caption on this photo for reference</p>
-          </div>
-          <div class="post-content">
-             <p>
-                {{ post.content }}
-             </p>
-          </div>
-       </div>
+        </div>
+      </div>
+      <div class="post-image text-center my-4">
+        <img [src]="post.imageUrl" [alt]="post.title" class="img-fluid">
+        <p class="image-caption mt-2">This is a caption on this photo for reference</p>
+      </div>
+      <div class="post-content" *ngIf="!editMode">
+        <p>{{ post.content }}</p>
+      </div>
+      <div *ngIf="isAuthor" class="text-center mt-3">
+        <button class="btn btn-primary" (click)="toggleEditMode()">Edit Post</button>
+      </div>
+      <div *ngIf="successMessage" class="alert alert-success text-center mt-3">
+        {{ successMessage }}
+      </div>
     </div>
-    <ng-template #loading>
-       <div class="text-center mt-5">
-          <p>Loading post details...</p>
-       </div>
-    </ng-template>
- </div>
+  </div>
+  <div *ngIf="editMode" class="row d-flex justify-content-center mt-4">
+    <div class="col-12 col-md-10 col-lg-8">
+      <form [formGroup]="postForm" (ngSubmit)="onUpdate()">
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input type="text" id="title" class="form-control" formControlName="title">
+        </div>
+        <div class="mb-3">
+          <label for="summary" class="form-label">Summary</label>
+          <input type="text" id="summary" class="form-control" formControlName="summary">
+        </div>
+        <div class="mb-3">
+          <label for="content" class="form-label">Content</label>
+          <textarea id="content" class="form-control" formControlName="content" rows="5"></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="imageUrl" class="form-label">Image URL</label>
+          <input type="text" id="imageUrl" class="form-control" formControlName="imageUrl">
+        </div>
+        <button type="submit" class="btn btn-primary w-100" [disabled]="!isAuthor">Update Post</button>
+      </form>
+    </div>
+  </div>
+  <ng-template #loading>
+    <div class="text-center mt-5">
+      <p>Loading post details...</p>
+    </div>
+  </ng-template>
+</div>
