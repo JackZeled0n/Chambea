@@ -33,13 +33,13 @@ export class PostDetailsComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.postId = params.get('id');
       if (this.postId) {
-        this.loadPostDetails(Number(this.postId));
+        this.loadPostDetails(this.postId);
       }
     });
   }
 
-  loadPostDetails(id: number) {
-    this.apiService.getPost(id.toString()).subscribe({
+  loadPostDetails(id: string) {
+    this.apiService.getPost(id).subscribe({
       next: (post) => {
         this.post = post;
         this.loadUserByEmail(this.post?.authorEmail);
