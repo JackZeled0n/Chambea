@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../core/services/auth.service';
@@ -11,6 +11,8 @@ import { AuthService } from '../../../core/services/auth.service';
   imports: [CommonModule, ReactiveFormsModule]
 })
 export class AuthModalComponent {
+  @Output() loginSuccess = new EventEmitter<void>();
+
   authForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required)
@@ -84,6 +86,7 @@ export class AuthModalComponent {
               if (user) {
                 console.log('Logged in successfully', user);
                 this.closeModal();
+                this.loginSuccess.emit();
               } else {
                 this.loginError = 'Invalid email or password';
               }

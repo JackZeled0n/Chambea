@@ -34,10 +34,16 @@ export class AuthService {
 
   logout() {
     this.userSubject.next(null);
+    window.location.reload();
   }
 
   getCurrentUser() {
     return this.userSubject.value;
+  }
+
+  getUserEmail(): string {
+    const currentUser = this.getCurrentUser();
+    return currentUser ? currentUser.email : '';
   }
 
   isAuthenticated() {

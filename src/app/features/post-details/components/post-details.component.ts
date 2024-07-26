@@ -39,7 +39,7 @@ export class PostDetailsComponent implements OnInit {
   }
 
   loadPostDetails(id: number) {
-    this.apiService.getPost(id).subscribe({
+    this.apiService.getPost(id.toString()).subscribe({
       next: (post) => {
         this.post = post;
         this.loadUserByEmail(this.post?.authorEmail);

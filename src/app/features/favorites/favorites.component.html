@@ -1,0 +1,19 @@
+<div class="container mt-5">
+  <h1 class="text-center mb-4">My Favorite Posts</h1>
+  <div *ngIf="favorites.length === 0" class="alert alert-info text-center">
+    <p>No favorite posts available.</p>
+  </div>
+  <div class="row">
+    <div *ngFor="let favorite of favorites" class="col-4 mb-4">
+      <app-card
+        [id]="favorite.id"
+        [title]="favorite.title"
+        [summary]="favorite.summary"
+        [imageUrl]="favorite.imageUrl"
+        [author]="favorite.authorEmail"
+        [date]="favorite.date"
+        (favoriteRemoved)="handleFavoriteRemoved($event)">
+      </app-card>
+    </div>
+  </div>
+</div>

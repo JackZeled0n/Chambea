@@ -32,8 +32,11 @@
           [summary]="post.summary"
           [imageUrl]="post.imageUrl"
           [author]="post.authorEmail"
-          [date]="post.date">
+          [date]="post.date"
+          (showLoginModal)="openLoginModal()">
         </app-card>
       </div>
     </div>
 </div>
+
+<app-auth-modal #authModal (loginSuccess)="onLoginSuccess()"></app-auth-modal>
