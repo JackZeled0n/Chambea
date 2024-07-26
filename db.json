@@ -74,13 +74,13 @@
     {
       "id": "7773",
       "email": "test@gmail.com",
-      "fullName": "Testing thte sign up",
+      "name": "Testing thte sign up",
       "password": "123"
     },
     {
       "id": "805c",
       "email": "test@123.com",
-      "fullName": "Somoto",
+      "name": "Somoto",
       "password": "somoto"
     }
   ]

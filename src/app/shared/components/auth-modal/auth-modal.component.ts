@@ -18,7 +18,7 @@ export class AuthModalComponent {
 
   signUpForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    fullName: new FormControl('', Validators.required),
+    name: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required)
   });
 
@@ -110,8 +110,8 @@ export class AuthModalComponent {
     return this.signUpForm.get('email');
   }
 
-  get signUpFullName() {
-    return this.signUpForm.get('fullName');
+  get signUpName() {
+    return this.signUpForm.get('name');
   }
 
   get signUpPassword() {

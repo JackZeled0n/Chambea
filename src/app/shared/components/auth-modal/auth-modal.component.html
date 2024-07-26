@@ -23,9 +23,9 @@
                   </div>
                 </div>
                 <div *ngIf="isSignUp" class="mb-3">
-                  <input type="text" class="form-control" formControlName="fullName" placeholder="Full Name">
-                  <div *ngIf="signUpFullName?.invalid && signUpFullName?.touched" class="text-danger">
-                    <small *ngIf="signUpFullName?.errors?.['required']">Full Name is required.</small>
+                  <input type="text" class="form-control" formControlName="name" placeholder="Full Name">
+                  <div *ngIf="signUpName?.invalid && signUpName?.touched" class="text-danger">
+                    <small *ngIf="signUpName?.errors?.['required']">Name is required.</small>
                   </div>
                 </div>
                 <div class="mb-3 position-relative">
