@@ -11,21 +11,21 @@
   
     <div *ngIf="filteredPosts.length === 0" class="text-center">
       <div class="row d-flex justify-content-center vh-70">
-        <div class="col-5 d-flex flex-column justify-content-center align-items-center">
+        <div class="col-12 col-md-6 col-lg-5 d-flex flex-column justify-content-center align-items-center">
           <p class="header-empty">Uh oh.</p>
           <p class="d-flex justify-content-center align-items-center px-5 text-empty">
             We ran into an issue, but don’t worry, we’ll take care of it for sure.
           </p>
           <button type="button" class="btn btn-primary" (click)="clearSearch()">Back to safety</button>
         </div>
-        <div class="col-6 d-flex flex-column justify-content-center align-items-center">
+        <div class="col-12 col-md-6 col-lg-6 d-flex flex-column justify-content-center align-items-center">
           <img src="/assets/svg/empty-post.svg" class="img-fluid" alt="Empty-post">
         </div>
       </div>
     </div>
   
     <div class="row">
-      <div *ngFor="let post of filteredPosts" class="col-4 mb-4">
+      <div *ngFor="let post of filteredPosts" class="col-12 col-md-6 col-lg-4 mb-4">
         <app-card
           [id]="post.id"
           [title]="post.title"

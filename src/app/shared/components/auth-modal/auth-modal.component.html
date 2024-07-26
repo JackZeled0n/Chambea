@@ -2,12 +2,12 @@
 <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-modal="true" role="dialog" [class.show]="isVisible" [ngClass]="{'d-block': isVisible}" aria-hidden="!isVisible">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
-      <div class="row no-gutters fixed-size">
+      <div class="row no-gutters">
         <div class="col-md-6 d-none d-md-block">
           <img [src]="isSignUp ? './assets/img/register.jpg' : './assets/img/login.jpg'" alt="Auth Image" class="img-fluid h-100 img-login">
         </div>
-        <div class="col-md-6 d-flex align-items-center justify-content-center">
-          <div class="w-100">
+        <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
+          <div class="w-100 p-3">
             <div class="modal-header border-0">
               <h5 class="modal-title" id="authModalLabel">{{ isSignUp ? 'Sign Up' : 'Sign In' }}</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
