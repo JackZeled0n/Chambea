@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { ApiService } from '../../../core/services/api.service';
 import { UserService } from '../../../core/services/user.service';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-card',
@@ -18,15 +19,56 @@ export class CardComponent implements OnInit {
   @Input() author: string = ''; 
   @Input() date: string = '';
   @Input() id: string = '';
+  @Input() favoriteId: string = '';
+
+  @Output() favoriteRemoved: EventEmitter<string> = new EventEmitter<string>();
+
   userName: string = ''; 
   avatar: string = '';
-
-  constructor(private router: Router, private apiService: ApiService, private userService: UserService) {}
-
+  isAuthenticated: boolean = false;
   isFavorite: boolean = false;
 
+  constructor(
+    private router: Router, 
+    private apiService: ApiService, 
+    private userService: UserService, 
+    private authService: AuthService
+  ) {}
+
   toggleFavorite(): void {
-    this.isFavorite = !this.isFavorite;
+    const userEmail = this.authService.getUserEmail();
+    if (this.isFavorite) {
+      if (this.favoriteId) {
+        this.apiService.removeFavorite(this.favoriteId).subscribe({
+          next: () => {
+            this.isFavorite = false;
+            this.favoriteRemoved.emit(this.favoriteId.toString());
+          },
+          error: (error) => {
+            console.error('Error removing favorite:', error);
+          }
+        });
+      }
+    } else {
+      const favorite = {
+        userEmail: userEmail,
+        postId: this.id,
+        title: this.title,
+        summary: this.summary,
+        imageUrl: this.imageUrl,
+        author: this.author,
+        date: this.date
+      };
+      this.apiService.addFavorite(favorite).subscribe({
+        next: (response) => {
+          this.isFavorite = true;
+          this.favoriteId = response.id;
+        },
+        error: (error) => {
+          console.error('Error adding favorite:', error);
+        }
+      });
+    }
   }
 
   truncateContent(content: string, limit: number): string {
@@ -37,25 +79,9 @@ export class CardComponent implements OnInit {
     this.router.navigate(['/post-details', this.id]);
   }
 
-  loadUserByEmail(email: string) {
-    this.apiService.getUserByEmail(email).subscribe({
-      next: (users) => {
-        if (users && users.length > 0) {
-          this.userName = users[0].name;
-          this.avatar = users[0].avatarUrl;
-        } else {
-          this.userName = 'Unknown Author';
-          this.avatar = './assets/img/empty-user.png'
-        }
-      },
-      error: (error) => {
-        console.error('Error loading user name:', error);
-        this.userName = 'Unknown Author';
-      }
-    });
-  }
-
   ngOnInit(): void {
+    this.isAuthenticated = this.authService.isAuthenticated();
+
     this.userService.loadUserByEmail(this.author).subscribe({
       next: (user) => {
         this.userName = user.userName;
@@ -65,6 +91,20 @@ export class CardComponent implements OnInit {
         console.error('Error loading user name:', error);
         this.userName = 'Unknown Author';
         this.avatar = './assets/img/empty-user.png';
+      }
+    });
+
+    const userEmail = this.authService.getUserEmail();
+    this.apiService.getFavorites(userEmail).subscribe({
+      next: (favorites) => {
+        const favorite = favorites.find((fav: any) => fav.postId === this.id);
+        if (favorite) {
+          this.isFavorite = true;
+          this.favoriteId = favorite.id;
+        }
+      },
+      error: (error) => {
+        console.error('Error loading favorites:', error);
       }
     });
   }

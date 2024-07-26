@@ -39,14 +39,14 @@
   ],
   "favorites": [
     {
-      "id": "1",
-      "userEmail": "user1@example.com",
-      "postId": 1
-    },
-    {
       "id": "2",
       "userEmail": "user2@example.com",
       "postId": 2
+    },
+    {
+      "id": "b8b3",
+      "userEmail": "user1@example.com",
+      "postId": "1"
     }
   ],
   "users": [
