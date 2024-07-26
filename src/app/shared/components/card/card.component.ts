@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { ApiService } from '../../../core/services/api.service';
+import { UserService } from '../../../core/services/user.service';
 
 @Component({
   selector: 'app-card',
@@ -20,7 +21,7 @@ export class CardComponent implements OnInit {
   userName: string = ''; 
   avatar: string = '';
 
-  constructor(private router: Router, private apiService: ApiService) {}
+  constructor(private router: Router, private apiService: ApiService, private userService: UserService) {}
 
   isFavorite: boolean = false;
 
@@ -55,6 +56,16 @@ export class CardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadUserByEmail(this.author);
+    this.userService.loadUserByEmail(this.author).subscribe({
+      next: (user) => {
+        this.userName = user.userName;
+        this.avatar = user.avatar;
+      },
+      error: (error) => {
+        console.error('Error loading user name:', error);
+        this.userName = 'Unknown Author';
+        this.avatar = './assets/img/empty-user.png';
+      }
+    });
   }
 }

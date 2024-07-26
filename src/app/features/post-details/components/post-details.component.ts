@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../../core/services/api.service';
+import { UserService } from '../../../core/services/user.service';
 
 interface Post {
   id: number;
@@ -26,7 +27,7 @@ export class PostDetailsComponent implements OnInit {
   userName: string = ''; 
   avatar: string = '';
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService) { }
+  constructor(private route: ActivatedRoute, private apiService: ApiService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -50,19 +51,15 @@ export class PostDetailsComponent implements OnInit {
   }
 
   loadUserByEmail(email: any) {
-    this.apiService.getUserByEmail(email).subscribe({
-      next: (users) => {
-        if (users && users.length > 0) {
-          this.userName = users[0].name;
-          this.avatar = users[0].avatarUrl;
-        } else {
-          this.userName = 'Unknown Author';
-          this.avatar = './assets/img/empty-user.png'
-        }
+    this.userService.loadUserByEmail(email).subscribe({
+      next: (user) => {
+        this.userName = user.userName;
+        this.avatar = user.avatar;
       },
       error: (error) => {
         console.error('Error loading user name:', error);
         this.userName = 'Unknown Author';
+        this.avatar = './assets/img/empty-user.png';
       }
     });
   }
