@@ -37,7 +37,18 @@
       "imageUrl": "https://via.placeholder.com/500"
     }
   ],
-  "favorites": [],
+  "favorites": [
+    {
+      "id": "c252",
+      "userEmail": "test@123.com",
+      "postId": "4"
+    },
+    {
+      "id": "098f",
+      "userEmail": "test@123.com",
+      "postId": "2"
+    }
+  ],
   "users": [
     {
       "id": "1",
