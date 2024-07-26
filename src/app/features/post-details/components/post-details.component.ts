@@ -54,7 +54,7 @@ export class PostDetailsComponent implements OnInit {
     this.userService.loadUserByEmail(email).subscribe({
       next: (user) => {
         this.userName = user.userName;
-        this.avatar = user.avatar;
+        this.avatar = user.avatar ? user.avatar: './assets/img/empty-user.png';
       },
       error: (error) => {
         console.error('Error loading user name:', error);

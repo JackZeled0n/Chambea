@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../core/services/api.service';
 import { AuthService } from '../../core/services/auth.service';
-import { formatDate } from '../../core/services/utils/formatDate';
+import { formatDate } from '../../core/utils/formatDate';
 
 @Component({
   selector: 'app-create-edit-post',
