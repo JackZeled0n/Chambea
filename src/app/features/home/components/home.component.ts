@@ -7,11 +7,12 @@ import { SearchInputComponent } from '../../../shared/components/search-input/se
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
 import { AuthModalComponent } from '../../../shared/components/auth-modal/auth-modal.component';
+import { FooterComponent } from '../../../shared/components/footer/footer.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, CardComponent, SearchInputComponent, FormsModule, AuthModalComponent],
+  imports: [CommonModule, HttpClientModule, CardComponent, SearchInputComponent, FormsModule, AuthModalComponent, FooterComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
