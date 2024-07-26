@@ -5,6 +5,7 @@ import { ApiService } from '../../../core/services/api.service';
 import { CardComponent } from '../../../shared/components/card/card.component';
 import { SearchInputComponent } from '../../../shared/components/search-input/search-input.component';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -17,10 +18,12 @@ export class HomeComponent implements OnInit {
   posts: any[] = [];
   filteredPosts: any[] = [];
   searchQuery: string = '';
+  isAuthenticated: boolean = false;
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.isAuthenticated = this.authService.isAuthenticated();
     this.apiService.getPosts().subscribe((data: any[]) => {
       this.posts = data;
       this.filteredPosts = data;
