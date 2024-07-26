@@ -16,11 +16,11 @@
         <img [src]="post.imageUrl" [alt]="post.title" class="img-fluid">
         <p class="image-caption">This is a caption on this photo for reference</p>
       </div>
-      <div class="post-content">
+      <div class="post-content" *ngIf="!editMode">
         <p>{{ post.content }}</p>
       </div>
       <div *ngIf="isAuthor" class="text-center mt-3">
-        <button class="btn btn-primary" (click)="editMode = !editMode">Edit Post</button>
+        <button class="btn btn-primary" (click)="toggleEditMode()">Edit Post</button>
       </div>
       <div *ngIf="successMessage" class="alert alert-success text-center mt-3">
         {{ successMessage }}

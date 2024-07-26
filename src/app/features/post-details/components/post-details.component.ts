@@ -47,6 +47,13 @@ export class PostDetailsComponent implements OnInit {
       content: [{ value: '', disabled: true }, Validators.required],
       imageUrl: [{ value: '', disabled: true }, Validators.required]
     });
+
+    this.authService.user$.subscribe(user => {
+      if (user && this.post) {
+        this.isAuthor = this.authService.getUserEmail() === this.post.authorEmail;
+        this.toggleFormControls(this.isAuthor && this.editMode);
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -66,7 +73,7 @@ export class PostDetailsComponent implements OnInit {
         if (this.post) {
           this.postForm.patchValue(this.post);
         }
-        this.toggleFormControls(this.isAuthor);
+        this.toggleFormControls(this.isAuthor && this.editMode);
         this.loadUserByEmail(this.post?.authorEmail);
       },
       error: (error) => {
@@ -127,5 +134,10 @@ export class PostDetailsComponent implements OnInit {
         }
       });
     }
+  }
+
+  toggleEditMode(): void {
+    this.editMode = !this.editMode;
+    this.toggleFormControls(this.isAuthor && this.editMode);
   }
 }
