@@ -1,0 +1,89 @@
+.post-header {
+	margin-bottom: 40px;
+}
+
+.post-title {
+	font-size: 43px;
+	font-weight: 900;
+	line-height: 52.91px;
+	letter-spacing: -0.02em;
+	text-align: center;
+}
+
+.post-summary {
+	font-size: 1.25rem;
+	color: rgba(80, 102, 144, 1);
+	font-size: 21px;
+	font-weight: 900;
+	line-height: 31.99px;
+	text-align: center;
+}
+
+.post-meta {
+	display: flex;
+	justify-content: start;
+	align-items: start;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	text-align: left;
+}
+
+.avatar {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	margin-right: 15px;
+}
+
+.author-info {
+	display: flex;
+	flex-direction: column;
+	margin-right: 20px;
+	margin-top: 10px;
+}
+
+.author-name {
+	font-size: 12px;
+	font-weight: 800;
+	text-align: left;
+}
+
+.post-date {
+	color: rgba(80, 102, 144, 1);
+	font-size: 12px;
+	font-weight: 800;
+	text-align: left;
+}
+
+.post-share {
+	display: flex;
+	align-items: center;
+	font-size: 1.25rem;
+}
+
+.post-share span {
+	margin-right: 10px;
+}
+
+.post-share i {
+	margin: 0 5px;
+}
+
+.post-image {
+	margin-bottom: 30px;
+}
+
+.image-caption {
+	color: rgba(134, 154, 184, 1);
+	margin-top: 10px;
+	font-size: 15px;
+	line-height: 22.85px;
+}
+
+.post-content p {
+	margin-bottom: 20px;
+	font-size: 17px;
+	font-weight: 700;
+	line-height: 25.9px;
+	text-align: left;
+}

@@ -1,0 +1,15 @@
+<div class="input-group input-group-lg">
+    <span class="input-group-text">
+      <i class="bi bi-search"></i>
+    </span>
+    <input 
+      type="text" 
+      class="form-control" 
+      placeholder="Search" 
+      [(ngModel)]="searchQuery" 
+      (input)="onInputChange()">
+    <span class="input-group-text result-text">
+      {{ resultCount }} results
+    </span>
+</div>
+  

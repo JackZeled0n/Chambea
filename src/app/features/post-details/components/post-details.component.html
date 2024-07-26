@@ -1,0 +1,33 @@
+<div class="container my-5 py-5 px-3 bg-white shadow-sm">
+    <div class="row d-flex justify-content-center" *ngIf="post; else loading">
+       <div class="col-8">
+          <div class="post-header text-center">
+             <h1 class="post-title">{{ post.title }}</h1>
+             <p class="post-summary mt-3 mx-3">
+                {{ post.summary }}
+             </p>
+             <div class="post-meta">
+                <img [src]="avatar" alt="Author avatar" class="avatar">
+                <div class="author-info">
+                   <span class="author-name">{{ userName }}</span>
+                   <span class="post-date">Published on {{ post.date }}</span>
+                </div>
+             </div>
+          </div>
+          <div class="post-image text-center">
+             <img [src]="post.imageUrl" [alt]="post.title" class="img-fluid">
+             <p class="image-caption">This is a caption on this photo for reference</p>
+          </div>
+          <div class="post-content">
+             <p>
+                {{ post.content }}
+             </p>
+          </div>
+       </div>
+    </div>
+    <ng-template #loading>
+       <div class="text-center mt-5">
+          <p>Loading post details...</p>
+       </div>
+    </ng-template>
+ </div>

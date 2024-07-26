@@ -1,0 +1,56 @@
+<div class="modal-backdrop" [class.show]="isVisible"></div>
+<div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-modal="true" role="dialog" [class.show]="isVisible" [ngClass]="{'d-block': isVisible}" aria-hidden="!isVisible">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="row no-gutters">
+        <div class="col-md-6 d-none d-md-block">
+          <img [src]="isSignUp ? './assets/img/register.jpg' : './assets/img/login.jpg'" alt="Auth Image" class="img-fluid h-100 img-login">
+        </div>
+        <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
+          <div class="w-100 p-3">
+            <div class="modal-header border-0">
+              <h5 class="modal-title" id="authModalLabel">{{ isSignUp ? 'Sign Up' : 'Sign In' }}</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
+            </div>
+            <div class="modal-body">
+              <p class="text-center text-detail">{{ isSignUp ? 'Join us today!' : 'Simplify your reading in minutes.' }}</p>
+              <form [formGroup]="isSignUp ? signUpForm : authForm" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                  <input type="email" class="form-control" [formControlName]="'email'" placeholder="Your email">
+                  <div *ngIf="(isSignUp ? signUpEmail : authEmail)?.invalid && (isSignUp ? signUpEmail : authEmail)?.touched" class="text-danger">
+                    <small *ngIf="(isSignUp ? signUpEmail : authEmail)?.errors?.['required']">Email is required.</small>
+                    <small *ngIf="(isSignUp ? signUpEmail : authEmail)?.errors?.['email']">Please enter a valid email.</small>
+                  </div>
+                </div>
+                <div *ngIf="isSignUp" class="mb-3">
+                  <input type="text" class="form-control" formControlName="name" placeholder="Full Name">
+                  <div *ngIf="signUpName?.invalid && signUpName?.touched" class="text-danger">
+                    <small *ngIf="signUpName?.errors?.['required']">Name is required.</small>
+                  </div>
+                </div>
+                <div class="mb-3 position-relative">
+                  <input [type]="passwordVisible ? 'text' : 'password'" class="form-control" [formControlName]="'password'" placeholder="Password">
+                  <i class="bi" [ngClass]="passwordVisible ? 'bi-eye-slash' : 'bi-eye'" (click)="togglePasswordVisibility()" style="position: absolute; right: 10px; top: 8px; cursor: pointer;"></i>
+                  <div *ngIf="(isSignUp ? signUpPassword : authPassword)?.invalid && (isSignUp ? signUpPassword : authPassword)?.touched" class="text-danger">
+                    <small *ngIf="(isSignUp ? signUpPassword : authPassword)?.errors?.['required']">Password is required.</small>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 mb-3" [disabled]="!(isSignUp ? signUpForm.valid : authForm.valid)">{{ isSignUp ? 'Sign Up' : 'Sign In' }}</button>
+                <p class="text-center">
+                  {{ isSignUp ? 'Already have an account?' : 'New user?' }} 
+                  <a href="#" (click)="toggleSignUp()">{{ isSignUp ? 'Sign in' : 'Sign up' }}</a>
+                </p>
+              </form>
+              <div *ngIf="loginError" class="text-danger text-center mt-2">
+                {{ loginError }}
+              </div>
+              <div *ngIf="signUpSuccess" class="text-success text-center mt-2">
+                {{ signUpSuccess }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

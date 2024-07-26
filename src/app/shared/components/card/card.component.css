@@ -1,0 +1,99 @@
+.card {
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.card-img-top {
+    border-bottom-right-radius: 50px;
+}
+
+.card-title {
+    font-size: 21px;
+    font-weight: 900;
+    line-height: 28.3px;
+    letter-spacing: -0.01em;
+    text-align: left;
+}
+
+.card-text {
+    color: #6c757d;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24.37px;
+    text-align: left;
+}
+
+.card-footer {
+    border-top: 1px solid #ddd;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.position-absolute {
+    position: absolute;
+}
+
+.top-0 {
+    top: 0;
+}
+
+.end-0 {
+    right: 0;
+}
+
+.m-2 {
+    margin: 0.5rem;
+}
+
+.start button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.text-warning {
+    color: #ffc107;
+}
+
+.text-muted {
+    color: #6c757d;
+}
+
+img.rounded-circle {
+    border-radius: 50%;
+}
+
+img.card-img-top {
+    height: 210px;
+    object-fit: cover;
+}
+
+.card-footer {
+    border-top: 0;
+}
+
+hr {
+    margin-top: -9px;
+    border: 1px solid rgb(212, 216, 220)
+}
+
+.username {
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 14.06px;
+    letter-spacing: 0.07em;
+    text-align: left;
+}
+
+.date {
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 14.06px;
+    letter-spacing: 0.07em;
+    text-align: center;
+}
