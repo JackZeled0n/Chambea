@@ -80,15 +80,18 @@
       "authorEmail": "test@123.com",
       "date": "2024-07-26",
       "id": "2e32"
-    }
-  ],
-  "favorites": [
+    },
     {
-      "id": "4ed7",
-      "userEmail": "test@123.com",
-      "postId": "1"
+      "id": "f93f",
+      "title": "Jake the programmer",
+      "summary": "I specialize in crafting pixel-perfect, engaging and accessible digital experiences, leveraging my wealth of experience and expertise. With a focus on innovation and quality, I thrive on tackling challenges and delivering outstanding results. My commitment to excellence drives me to continually improve and push boundaries in the field of software development.",
+      "content": "Built, styled, and delivered high-quality websites, web apps, Alexa skills, chatbots and digital experiences for a diverse array of projects for clients including iHeartMedia, Skilled Creative, Big spaceship, Studio IVL, and Struck. As a Team Leader in the conversational development department, I provide leadership through close collaboration with the team, knowledge sharing, and spearheading the creation of internal tools to improve efficiency and work quality.",
+      "imageUrl": "https://via.placeholder.com/900",
+      "authorEmail": "123@gmail.com",
+      "date": "2024-07-26"
     }
   ],
+  "favorites": [],
   "users": [
     {
       "id": "1",
@@ -122,6 +125,12 @@
       "email": "test@123.com",
       "name": "Somoto",
       "password": "somoto"
+    },
+    {
+      "id": "3867",
+      "email": "123@gmail.com",
+      "name": "Jake",
+      "password": "123"
     }
   ]
 }
