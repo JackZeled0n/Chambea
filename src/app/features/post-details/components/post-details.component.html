@@ -22,6 +22,9 @@
       <div *ngIf="isAuthor" class="text-center mt-3">
         <button class="btn btn-primary" (click)="editMode = !editMode">Edit Post</button>
       </div>
+      <div *ngIf="successMessage" class="alert alert-success text-center mt-3">
+        {{ successMessage }}
+      </div>
     </div>
   </div>
   <div *ngIf="editMode" class="row d-flex justify-content-center mt-4">

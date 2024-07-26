@@ -21,7 +21,7 @@ interface Post {
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './post-details.component.html',
-  styleUrl: './post-details.component.css'
+  styleUrls: ['./post-details.component.css']
 })
 export class PostDetailsComponent implements OnInit {
   postId: string | null = null;
@@ -31,6 +31,7 @@ export class PostDetailsComponent implements OnInit {
   postForm: FormGroup;
   isAuthor: boolean = false;
   editMode: boolean = false;
+  successMessage: string | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -112,8 +113,14 @@ export class PostDetailsComponent implements OnInit {
     if (this.postId) {
       this.apiService.editPost(this.postId, updatedPost).subscribe({
         next: () => {
-          alert('Post updated successfully!');
-          this.router.navigate(['/post-details', this.postId]);
+          this.successMessage = 'Post updated successfully!';
+          this.editMode = false;
+          if (this.postId) {
+            this.loadPostDetails(this.postId);
+          }
+          setTimeout(() => {
+            this.successMessage = null;
+          }, 3000);
         },
         error: (error) => {
           console.error('Error updating post:', error);
