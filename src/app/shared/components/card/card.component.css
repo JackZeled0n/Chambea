@@ -97,3 +97,6 @@ hr {
     letter-spacing: 0.07em;
     text-align: center;
 }
+.w-90 {
+    width: 90% !important;
+}

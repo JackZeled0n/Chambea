@@ -35,14 +35,45 @@
       "authorEmail": "user2@example.com",
       "date": "2024-07-25",
       "imageUrl": "https://via.placeholder.com/500"
+    },
+    {
+      "id": "1fb6",
+      "title": "Jake is testing",
+      "summary": "testing ",
+      "content": "Lorepm ipsum content mi hermano \n\nVos sabes como es esto probando",
+      "imageUrl": "https://via.placeholder.com/600",
+      "authorEmail": "test@123.com",
+      "date": "2024-07-26"
+    },
+    {
+      "title": "Suicide boys",
+      "summary": "Greats songs MF",
+      "content": "Lorem ipsum odor amet, consectetuer adipiscing elit. Tempor ultricies suspendisse nostra felis risus. Arcu sagittis pharetra vehicula; vulputate proin aenean. Metus torquent nisi aenean vulputate dignissim tristique nec ultricies varius. Penatibus nullam class dolor lacus commodo sit; aptent natoque vivamus. Quam aptent mi fermentum semper ante penatibus duis risus. Auctor tincidunt porta erat efficitur lacus bibendum.",
+      "imageUrl": "https://via.placeholder.com/1000",
+      "authorEmail": "test@123.com",
+      "date": "2024-07-26",
+      "id": "7"
+    },
+    {
+      "id": "fe4a",
+      "title": "Chelsea",
+      "summary": "From",
+      "content": "you know",
+      "imageUrl": "https://via.placeholder.com/900",
+      "authorEmail": "test@123.com",
+      "date": "2024-07-26"
+    },
+    {
+      "id": "369d",
+      "title": "Lil tecca",
+      "summary": "500 lbs",
+      "content": "Lorem ipsum odor amet, consectetuer adipiscing elit. Tempor ultricies suspendisse nostra felis risus. Arcu sagittis pharetra vehicula; vulputate proin aenean. Metus torquent nisi aenean vulputate dignissim tristique nec ultricies varius. Penatibus nullam class dolor lacus commodo sit; aptent natoque vivamus. Quam aptent mi fermentum semper ante penatibus duis risus. Auctor tincidunt porta erat efficitur lacus bibendum.",
+      "imageUrl": "https://via.placeholder.com/200",
+      "authorEmail": "test@123.com",
+      "date": "2024-07-26"
     }
   ],
   "favorites": [
-    {
-      "id": "c252",
-      "userEmail": "test@123.com",
-      "postId": "4"
-    },
     {
       "id": "098f",
       "userEmail": "test@123.com",
