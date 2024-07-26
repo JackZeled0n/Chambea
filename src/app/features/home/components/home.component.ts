@@ -40,8 +40,7 @@ export class HomeComponent implements OnInit {
   filterPosts(): void {
     const query = this.searchQuery.toLowerCase();
     this.filteredPosts = this.posts.filter(post => 
-      post.title.toLowerCase().includes(query) || 
-      post.author.toLowerCase().includes(query)
+      post.title.toLowerCase().includes(query)
     );
   }
 

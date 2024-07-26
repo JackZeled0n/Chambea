@@ -4,7 +4,7 @@
     <p>No favorite posts available.</p>
   </div>
   <div class="row">
-    <div *ngFor="let favorite of favorites" class="col-4 mb-4">
+    <div *ngFor="let favorite of favorites" class="col-12 col-md-6 col-lg-4 mb-4">
       <app-card
         [id]="favorite.id"
         [title]="favorite.title"
