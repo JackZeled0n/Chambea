@@ -4,7 +4,7 @@
     <div class="modal-content">
       <div class="row no-gutters fixed-size">
         <div class="col-md-6 d-none d-md-block">
-            <img [src]="isSignUp ? './assets/img/register.jpg' : './assets/img/login.jpg'" alt="Auth Image" class="img-fluid h-100 img-login">
+          <img [src]="isSignUp ? './assets/img/register.jpg' : './assets/img/login.jpg'" alt="Auth Image" class="img-fluid h-100 img-login">
         </div>
         <div class="col-md-6 d-flex align-items-center justify-content-center">
           <div class="w-100">
@@ -41,6 +41,12 @@
                   <a href="#" (click)="toggleSignUp()">{{ isSignUp ? 'Sign in' : 'Sign up' }}</a>
                 </p>
               </form>
+              <div *ngIf="loginError" class="text-danger text-center mt-2">
+                {{ loginError }}
+              </div>
+              <div *ngIf="signUpSuccess" class="text-success text-center mt-2">
+                {{ signUpSuccess }}
+              </div>
             </div>
           </div>
         </div>
