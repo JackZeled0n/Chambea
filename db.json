@@ -71,13 +71,22 @@
       "imageUrl": "https://via.placeholder.com/200",
       "authorEmail": "test@123.com",
       "date": "2024-07-26"
+    },
+    {
+      "title": "Jake",
+      "summary": "Jake",
+      "content": "Jake",
+      "imageUrl": "https://via.placeholder.com/100",
+      "authorEmail": "test@123.com",
+      "date": "2024-07-26",
+      "id": "2e32"
     }
   ],
   "favorites": [
     {
-      "id": "098f",
+      "id": "4ed7",
       "userEmail": "test@123.com",
-      "postId": "2"
+      "postId": "1"
     }
   ],
   "users": [
