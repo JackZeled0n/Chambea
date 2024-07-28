@@ -1,10 +1,147 @@
+const jsonServer = require('json-server');
 const serverless = require('serverless-http');
 const express = require('express');
-const jsonServer = require('json-server');
-const path = require('path');
 
 const app = express();
-const router = jsonServer.router({});
+
+const db = {
+    "posts": [
+      {
+        "id": "1",
+        "title": "Should I work remotely or will it put a strain on my long-term career?",
+        "summary": "As part of our ongoing effort to enhance the traveler journey, we’re proud to partner with Portland International Airport (PDX) on the launch of a pilot program designed to shorten rider wait times at pickup.",
+        "content": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
+        "authorEmail": "user1@example.com",
+        "date": "2024-07-24",
+        "imageUrl": "./assets/img/post-example-image.jpg"
+      },
+      {
+        "id": "2",
+        "title": "Should I work remotely or will it put a strain on my long-term career?",
+        "summary": "As part of our ongoing effort to enhance the traveler journey, we’re proud to partner with Portland International Airport (PDX) on the launch of a pilot program designed to shorten rider wait times at pickup.",
+        "content": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
+        "authorEmail": "user3@example.com",
+        "date": "2024-07-25",
+        "imageUrl": "./assets/img/post-example-image-2.jpg"
+      },
+      {
+        "id": "3",
+        "title": "Third Blog Post",
+        "summary": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id obcaecati consequatur rerum, modi ipsum odit atque mollitia, perferendis, necessitatibus dolore quod fugiat sunt consequuntur. Illo ducimus natus ad cum numquam?",
+        "content": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
+        "authorEmail": "user2@example.com",
+        "date": "2024-07-25",
+        "imageUrl": "https://via.placeholder.com/500"
+      },
+      {
+        "id": "4",
+        "title": "Fourth Blog Post",
+        "summary": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id obcaecati consequatur rerum, modi ipsum odit atque mollitia, perferendis, necessitatibus dolore quod fugiat sunt consequuntur. Illo ducimus natus ad cum numquam?",
+        "content": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
+        "authorEmail": "user2@example.com",
+        "date": "2024-07-25",
+        "imageUrl": "https://via.placeholder.com/500"
+      },
+      {
+        "id": "1fb6",
+        "title": "Jake is testing",
+        "summary": "testing ",
+        "content": "Lorepm ipsum content mi hermano \n\nVos sabes como es esto probando",
+        "imageUrl": "https://via.placeholder.com/600",
+        "authorEmail": "test@123.com",
+        "date": "2024-07-26"
+      },
+      {
+        "title": "Suicide boys",
+        "summary": "Greats songs MF",
+        "content": "Lorem ipsum odor amet, consectetuer adipiscing elit. Tempor ultricies suspendisse nostra felis risus. Arcu sagittis pharetra vehicula; vulputate proin aenean. Metus torquent nisi aenean vulputate dignissim tristique nec ultricies varius. Penatibus nullam class dolor lacus commodo sit; aptent natoque vivamus. Quam aptent mi fermentum semper ante penatibus duis risus. Auctor tincidunt porta erat efficitur lacus bibendum.",
+        "imageUrl": "https://via.placeholder.com/1000",
+        "authorEmail": "test@123.com",
+        "date": "2024-07-26",
+        "id": "7"
+      },
+      {
+        "id": "fe4a",
+        "title": "Chelsea",
+        "summary": "From",
+        "content": "you know",
+        "imageUrl": "https://via.placeholder.com/900",
+        "authorEmail": "test@123.com",
+        "date": "2024-07-26"
+      },
+      {
+        "id": "369d",
+        "title": "Lil tecca",
+        "summary": "500 lbs",
+        "content": "Lorem ipsum odor amet, consectetuer adipiscing elit. Tempor ultricies suspendisse nostra felis risus. Arcu sagittis pharetra vehicula; vulputate proin aenean. Metus torquent nisi aenean vulputate dignissim tristique nec ultricies varius. Penatibus nullam class dolor lacus commodo sit; aptent natoque vivamus. Quam aptent mi fermentum semper ante penatibus duis risus. Auctor tincidunt porta erat efficitur lacus bibendum.",
+        "imageUrl": "https://via.placeholder.com/200",
+        "authorEmail": "test@123.com",
+        "date": "2024-07-26"
+      },
+      {
+        "title": "Jake",
+        "summary": "Jake",
+        "content": "Jake",
+        "imageUrl": "https://via.placeholder.com/100",
+        "authorEmail": "test@123.com",
+        "date": "2024-07-26",
+        "id": "2e32"
+      },
+      {
+        "id": "f93f",
+        "title": "Jake the programmer",
+        "summary": "I specialize in crafting pixel-perfect, engaging and accessible digital experiences, leveraging my wealth of experience and expertise. With a focus on innovation and quality, I thrive on tackling challenges and delivering outstanding results. My commitment to excellence drives me to continually improve and push boundaries in the field of software development.",
+        "content": "Built, styled, and delivered high-quality websites, web apps, Alexa skills, chatbots and digital experiences for a diverse array of projects for clients including iHeartMedia, Skilled Creative, Big spaceship, Studio IVL, and Struck. As a Team Leader in the conversational development department, I provide leadership through close collaboration with the team, knowledge sharing, and spearheading the creation of internal tools to improve efficiency and work quality.",
+        "imageUrl": "https://via.placeholder.com/900",
+        "authorEmail": "123@gmail.com",
+        "date": "2024-07-26"
+      }
+    ],
+    "favorites": [],
+    "users": [
+      {
+        "id": "1",
+        "email": "user1@example.com",
+        "password": "one",
+        "name": "User One",
+        "avatarUrl": "https://avataaars.io/?avatarStyle=Circle&topType=LongHairStraight&accessoriesType=Blank&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerShirt&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Light"
+      },
+      {
+        "id": "2",
+        "email": "user2@example.com",
+        "password": "two",
+        "name": "User Two",
+        "avatarUrl": "https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortCurly&accessoriesType=Blank&hairColor=Black&facialHairType=BeardLight&facialHairColor=Black&clotheType=Hoodie&clotheColor=Black&eyeType=Happy&eyebrowType=DefaultNatural&mouthType=Smile&skinColor=Brown"
+      },
+      {
+        "id": "3",
+        "email": "user3@example.com",
+        "password": "three",
+        "name": "User Test",
+        "avatarUrl": "https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortCurly&accessoriesType=Blank&hairColor=Black&facialHairType=BeardLight&facialHairColor=Black&clotheType=Hoodie&clotheColor=Black&eyeType=Happy&eyebrowType=DefaultNatural&mouthType=Smile&skinColor=Brown"
+      },
+      {
+        "id": "7773",
+        "email": "test@gmail.com",
+        "name": "Testing thte sign up",
+        "password": "123"
+      },
+      {
+        "id": "805c",
+        "email": "test@123.com",
+        "name": "Somoto",
+        "password": "somoto"
+      },
+      {
+        "id": "3867",
+        "email": "123@gmail.com",
+        "name": "Jake",
+        "password": "123"
+      }
+    ]
+};
+
+const router = jsonServer.router(db);
 
 app.use(jsonServer.defaults());
 app.use('/api', router);
