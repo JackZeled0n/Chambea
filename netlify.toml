@@ -8,9 +8,3 @@
   to = "/.netlify/functions/json-server"
   status = 200
   force = true
-
-[build.environment]
-  NODE_ENV = "production"
-
-[context.production.environment]
-  NODE_ENV = "production"
