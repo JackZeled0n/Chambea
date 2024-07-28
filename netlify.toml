@@ -1,8 +1,18 @@
 [build]
-  command = "ng build --configuration production"
-  publish = "dist/chambea"
+  publish = "dist/chambea/browser"
+  functions = "netlify/functions"
 
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/json-server"
-  status = 200
+[build.environment]
+  NODE_ENV = "production"
+  ANGULAR_ENV = "production"
+
+[context.production.environment]
+  API_URL = "https://chambea-api.onrender.com"
+
+[context.deploy-preview]
+  command = "ng build --configuration production"
+  publish = "dist/chambea/browser"
+
+[context.production]
+  command = "npm install && ng build --configuration production"
+  publish = "dist/chambea/browser"
