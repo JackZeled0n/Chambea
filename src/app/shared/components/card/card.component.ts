@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { ApiService } from '../../../core/services/api.service';
@@ -13,12 +13,12 @@ import { AuthService } from '../../../core/services/auth.service';
   styleUrls: ['./card.component.css']
 })
 export class CardComponent implements OnInit {
+  @Input() id: string = '';
   @Input() title: string = '';
   @Input() summary: string = '';
   @Input() imageUrl: string = '';
   @Input() author: string = ''; 
   @Input() date: string = '';
-  @Input() id: string = '';
   @Input() favoriteId: string | null = null;
 
   @Output() favoriteRemoved: EventEmitter<string> = new EventEmitter<string>();
@@ -44,18 +44,16 @@ export class CardComponent implements OnInit {
     }
 
     const userEmail = this.authService.getUserEmail();
-    if (this.isFavorite) {
-      if (this.favoriteId) {
-        this.apiService.removeFavorite(this.favoriteId).subscribe({
-          next: () => {
-            this.isFavorite = false;
-            this.favoriteRemoved.emit(this.favoriteId?.toString());
-          },
-          error: (error) => {
-            console.error('Error removing favorite:', error);
-          }
-        });
-      }
+    if (this.isFavorite && this.favoriteId) {
+      this.apiService.removeFavorite(this.favoriteId).subscribe({
+        next: () => {
+          this.isFavorite = false;
+          this.favoriteRemoved.emit(this.favoriteId!);
+        },
+        error: (error) => {
+          console.error('Error removing favorite:', error);
+        }
+      });
     } else {
       const favorite = {
         userEmail: userEmail,

@@ -51,6 +51,9 @@ export class FavoritesComponent implements OnInit {
   loadFavorites(): void {
     this.apiService.getFavorites(this.userEmail).pipe(
       switchMap((favorites: Favorite[]) => {
+        if (favorites.length === 0) {
+          return [];
+        }
         const postObservables: Observable<any>[] = favorites.map((favorite: Favorite) =>
           this.apiService.getPost(favorite.postId).pipe(
             map(post => ({ ...post, favoriteId: favorite.id }))
