@@ -1,0 +1,11 @@
+{
+    "name": "json-server-function",
+    "version": "1.0.0",
+    "main": "json-server.js",
+    "dependencies": {
+      "express": "^4.17.1",
+      "json-server": "^0.17.0",
+      "serverless-http": "^2.7.0"
+    }
+}
+  
