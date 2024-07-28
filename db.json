@@ -91,7 +91,13 @@
       "date": "2024-07-26"
     }
   ],
-  "favorites": [],
+  "favorites": [
+    {
+      "id": "d5c6",
+      "userEmail": "test@123.com",
+      "postId": "2"
+    }
+  ],
   "users": [
     {
       "id": "1",
@@ -124,7 +130,7 @@
       "id": "805c",
       "email": "test@123.com",
       "name": "Somoto",
-      "password": "somoto"
+      "password": "123"
     },
     {
       "id": "3867",
