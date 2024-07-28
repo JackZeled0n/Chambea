@@ -1,0 +1,8 @@
+[build]
+  command = "ng build --configuration production"
+  publish = "dist/chambea"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/json-server"
+  status = 200
