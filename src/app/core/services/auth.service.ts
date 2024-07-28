@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { catchError, map, switchMap } from 'rxjs/operators';
+import { ApiService } from './api.service';
 import { UserService } from './user.service';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,13 +11,20 @@ export class AuthService {
   private userSubject = new BehaviorSubject<any>(null);
   user$ = this.userSubject.asObservable();
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private apiService: ApiService) {}
 
-  register(user: any) {
-    return this.userService.registerUser(user).pipe(
-      map((newUser) => {
-        this.userSubject.next(newUser);
-        return newUser;
+  register(user: any): Observable<any> {
+    return this.apiService.getUserByEmail(user.email).pipe(
+      switchMap(existingUser => {
+        if (existingUser) {
+          return throwError(() => new Error('User already exists'));
+        }
+        return this.userService.registerUser(user).pipe(
+          map(newUser => {
+            this.userSubject.next(newUser);
+            return newUser;
+          })
+        );
       })
     );
   }

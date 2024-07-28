@@ -6,14 +6,6 @@
     height: 70vh !important;
 }
 
-.header-empty {
-    font-size: 52px;
-    font-weight: 900;
-    line-height: 60.94px;
-    letter-spacing: -0.01em;
-    text-align: center;
-}
-
 .text-empty {
     color: rgba(110, 132, 163, 1);
     font-size: 17px;
