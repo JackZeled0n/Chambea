@@ -88,6 +88,6 @@
 }
 
 .fixed-size {
-  width: 800px; /* Asegura que el modal tenga un ancho fijo */
-  height: 600px; /* Asegura que el modal tenga una altura fija */
+  width: 800px;
+  height: 600px;
 }

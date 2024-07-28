@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../core/services/auth.service';
@@ -29,6 +29,7 @@ export class AuthModalComponent {
   isSignUp = false;
   loginError: string | null = null;
   signUpSuccess: string | null = null;
+  signUpError: string | null = null;
 
   constructor(private authService: AuthService) {}
 
@@ -46,6 +47,7 @@ export class AuthModalComponent {
     this.signUpForm.reset();
     this.loginError = null;
     this.signUpSuccess = null;
+    this.signUpError = null;
   }
 
   togglePasswordVisibility(): void {
@@ -59,6 +61,7 @@ export class AuthModalComponent {
 
   onSubmit(): void {
     this.loginError = null;
+    this.signUpError = null;
 
     if (this.isSignUp) {
       if (this.signUpForm.valid) {
@@ -72,6 +75,7 @@ export class AuthModalComponent {
           },
           error: (error) => {
             console.error('Registration error:', error);
+            this.signUpError = 'User already exists';
           }
         });
       }
