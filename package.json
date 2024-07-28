@@ -4,11 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration production",
+    "build": "npm run pre-build && ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "json-server": "json-server --watch db.json --port 3000",
-  "pre-build": "cd netlify/functions/json-server && npm install"
+    "pre-build": "cd netlify/functions/json-server && npm install"
   },
   "private": true,
   "dependencies": {
