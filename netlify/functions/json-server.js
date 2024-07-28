@@ -1,9 +1,13 @@
-const { createServer, router, defaults } = require('json-server');
-const server = createServer();
-const middleware = defaults();
-const jsonRouter = router('db.json');
+const serverless = require('serverless-http');
+const express = require('express');
+const jsonServer = require('json-server');
+const path = require('path');
 
-server.use(middleware);
-server.use(jsonRouter);
+const app = express();
+const router = jsonServer.router(path.join(__dirname, '..', '..', 'db.json')); 
+const middlewares = jsonServer.defaults();
 
-module.exports = server;
+app.use(middlewares);
+app.use('/api', router);
+
+module.exports.handler = serverless(app);
