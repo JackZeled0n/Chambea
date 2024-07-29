@@ -32,7 +32,8 @@ Chambea is a blog application built with Angular. It allows users to create, edi
    ```bash
    ng serve
     ```
-## API Endpoints: https://chambea-api.onrender.com/
+## API Endpoints: 
+Api url: https://chambea-api.onrender.com/
 
 - **GET /posts**: Retrieve all posts.
 - **GET /posts/:id**: Retrieve a specific post by ID.
