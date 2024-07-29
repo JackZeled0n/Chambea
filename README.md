@@ -11,7 +11,7 @@ Chambea is a blog application built with Angular. It allows users to create, edi
 ## Features
 
 - User authentication (Sign up, Login, Logout)
-- Create, edit, and delete blog posts
+- Create and edit blog posts
 - Mark posts as favorites
 - Search functionality
 - Responsive design
